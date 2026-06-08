@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tienda de Mezcales</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#f5efe6;
+}
+
+/* HEADER */
+header{
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+    url('mezcalfondo.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 90px 20px;
+}
+
+header h1{
+    margin:0;
+    font-size:40px;
+}
+
+/* BOTÓN HEADER */
+header a{
+    display:inline-block;
+    margin-top:15px;
+    background:#25D366;
+    color:white;
+    padding:10px 15px;
+    text-decoration:none;
+    border-radius:8px;
+}
+
+/* PRODUCTOS */
+.productos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+    padding:20px;
+}
+
+.producto{
+    background:white;
+    padding:10px;
+    border-radius:10px;
+    text-align:center;
+    box-shadow:0 3px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.producto:hover{
+    transform: scale(1.05);
+}
+
+.producto img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+button{
+    background:#25D366;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/* CARRITO */
+.carrito{
+    position:fixed;
+    top:10px;
+    right:10px;
+    background:white;
+    width:250px;
+    padding:10px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+.vaciar{
+    background:red;
+    width:100%;
+    margin-top:10px;
+}
+
+/* MAPA */
+.mapa{
+    width:100%;
+    height:400px;
+    border:0;
+}
+
+/* WHATSAPP */
+.whatsapp{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:white;
+    padding:15px 18px;
+    border-radius:50%;
+    text-decoration:none;
+    font-size:20px;
+}
+
+/* SOBRE NOSOTROS */
+.sobre{
+    padding:30px;
+    text-align:center;
+}
+
+/* VIDEO */
+video{
+    width:80%;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+    header h1{font-size:28px;}
+    .carrito{width:90%; right:5%;}
+    video{width:95%;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Mezcales Artesanales</h1>
+    <p>🍶 Sabor auténtico de Oaxaca directo a tu mesa</p>
+    <a href="#productos">Ver productos</a>
+</header>
+
+<!-- VIDEO -->
+<div style="text-align:center;">
+  <video controls autoplay muted loop style="width:400px; border-radius:20px;">
+    <source src="videocorto.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- CARRITO -->
+<div class="carrito">
+    <h3>🛒 Carrito</h3>
+    <div id="lista"></div>
+    <p>Total: $<span id="total">0</span></p>
+
+    <button onclick="enviarWhatsApp()">Comprar por WhatsApp</button>
+    <button class="vaciar" onclick="vaciar()">Vaciar carrito</button>
+</div>
+
+<!-- PRODUCTOS -->
+<div class="productos" id="productos">
+
+    <div class="producto">
+        <img src="imagen1.jpeg">
+        <h3>Mezcal Espadín</h3>
+        <p>$350</p>
+        <button onclick="agregar('Espadín',350)">Agregar</button>
+    </div>
+
+    <div class="producto">
+        <img src="img.jpeg">
+        <h3>Mezcal Tobalá</h3>
+        <p>$550</p>
+        <button onclick="agregar('Tobalá',550)">Agregar</button>
+    </div>
+
+    <div class="producto">
+        <img src="img3.jpeg">
+        <h3>Miel Natural</h3>
+        <p>$150</p>
+        <button onclick="agregar('Natural',150)">Agregar</button>
+    </div>
+
+    <div class="producto">
+        <img src="img4.jpeg">
+        <h3>Mezcal Añejo</h3>
+        <p>$480</p>
+        <button onclick="agregar('Añejo',480)">Agregar</button>
+    </div>
+ <div class="producto">
+        <img src="imagencoctel.jpeg">
+        <h3>Cóctel</h3>
+        <p>$120</p>
+        <button onclick="agregar('cóctel',120)">Agregar</button>
+    </div>
+
+
+</div>
+
+<!-- SOBRE NOSOTROS -->
+<div class="sobre">
+    <h2>Sobre nosotros</h2>
+    <p>
+        Somos productores de mezcal artesanal en Oaxaca, elaboramos nuestras bebidas
+        con agave seleccionado y procesos tradicionales.
+    </p>
+    <p>⭐⭐⭐⭐⭐ Clientes satisfechos</p>
+</div>
+
+<!-- MAPA -->
+<h2 style="text-align:center;">Ubicación</h2>
+
+<iframe class="mapa"
+src="https://www.google.com/maps?q=16.7378,-96.7236&output=embed">
+</iframe>
+
+<div style="text-align:center; padding:15px;">
+<a href="https://www.google.com/maps?q=16.7378,-96.7236"
+target="_blank"
+style="background:#c68b2c;color:white;padding:10px 15px;text-decoration:none;border-radius:8px;">
+📍 Cómo llegar
+</a>
+</div>
+
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/5219531234567" target="_blank">
+💬
+</a>
+
+<script>
+let carrito = [];
+let total = 0;
+
+function agregar(nombre, precio){
+    carrito.push({nombre, precio});
+    total += precio;
+    mostrar();
+}
+
+function mostrar(){
+    let lista = document.getElementById("lista");
+    lista.innerHTML = "";
+
+    carrito.forEach(item=>{
+        lista.innerHTML += `
+        <div style="display:flex;justify-content:space-between;">
+        🍶 ${item.nombre}
+        <b>$${item.precio}</b>
+        </div>`;
+    });
+
+    document.getElementById("total").innerText = total;
+}
+
+function vaciar(){
+    carrito = [];
+    total = 0;
+    mostrar();
+}
+
+function enviarWhatsApp(){
+    let msg = "Hola, quiero comprar:%0A";
+
+    carrito.forEach(p=>{
+        msg += `- ${p.nombre} $${p.precio}%0A`;
+    });
+
+    msg += `Total: $${total}`;
+
+    window.open("https://wa.me/5219531234567?text=" + msg, "_blank");
+}
+</script>
+
+</body>
+</html>
